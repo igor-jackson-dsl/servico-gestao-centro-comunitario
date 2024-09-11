@@ -2,49 +2,52 @@ package dsl.jackson.igor.SGCC.model.dto;
 
 public class RecursosDTO {
 
-    private int medicos;
-    private int voluntarios;
-    private int kitsSuprimentos;
-    private int veiculos;
-    private int cestasBasicas;
+    private String id;
+    private String nome;
+    private int pontos;
 
     // Construtor padrão
-    public RecursosDTO() {
-    }
+    public RecursosDTO() {}
 
     // Construtor com parâmetros
-    public RecursosDTO(int medicos, int voluntarios, int kitsSuprimentos, int veiculos, int cestasBasicas) {
-        this.medicos = medicos;
-        this.voluntarios = voluntarios;
-        this.kitsSuprimentos = kitsSuprimentos;
-        this.veiculos = veiculos;
-        this.cestasBasicas = cestasBasicas;
+    public RecursosDTO(String id, String nome, int pontos) {
+        this.id = id;
+        this.nome = nome;
+        this.pontos = pontos;
     }
 
     // Getters e Setters
-    public int getMedicos() { return medicos; }
-    public void setMedicos(int medicos) { this.medicos = medicos; }
+    public String getId() {
+        return id;
+    }
 
-    public int getVoluntarios() { return voluntarios; }
-    public void setVoluntarios(int voluntarios) { this.voluntarios = voluntarios; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public int getKitsSuprimentos() { return kitsSuprimentos; }
-    public void setKitsSuprimentos(int kitsSuprimentos) { this.kitsSuprimentos = kitsSuprimentos; }
+    public String getNome() {
+        return nome;
+    }
 
-    public int getVeiculos() { return veiculos; }
-    public void setVeiculos(int veiculos) { this.veiculos = veiculos; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public int getCestasBasicas() { return cestasBasicas; }
-    public void setCestasBasicas(int cestasBasicas) { this.cestasBasicas = cestasBasicas; }
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
 
     @Override
     public String toString() {
         return "RecursosDTO{" +
-                "medicos=" + medicos +
-                ", voluntarios=" + voluntarios +
-                ", kitsSuprimentos=" + kitsSuprimentos +
-                ", veiculos=" + veiculos +
-                ", cestasBasicas=" + cestasBasicas +
+                "id='" + id + '\'' +
+                ", nome='" + nome + '\'' +
+                ", pontos=" + pontos +
                 '}';
     }
 }
+

@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/centros")
 @Tag(name = "Centro Comunitário", description = "Operações relacionadas aos centros comunitários")
@@ -21,6 +23,17 @@ public class CentroComunitarioController {
 
     CentroComunitarioController (CentroComunitarioService service){
         this.centroComunitarioService = service;
+    }
+
+    @Operation(summary = "Listar centros comunitários", description = "Lista todos os centros comunitarios.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Centros comunitarios listados com sucesso"),
+        @ApiResponse(responseCode = "500", description = "Erro interno Servidor")
+    })
+    @GetMapping(value = "/listar")
+    public ResponseEntity<List<CentroComunitario>> listarCentros() {
+        List<CentroComunitario> centroComunitarioList = centroComunitarioService.listarCentros();
+        return new ResponseEntity<>(centroComunitarioList, HttpStatus.OK);
     }
 
     @Operation(summary = "Adicionar um novo centro comunitário", description = "Cria um novo centro comunitário com os dados fornecidos.")
@@ -34,9 +47,9 @@ public class CentroComunitarioController {
         return new ResponseEntity<>(centroComunitario, HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Adicionar um novo centro comunitário", description = "Cria um novo centro comunitário com os dados fornecidos.")
+    @Operation(summary = "Atualizar a ocupação", description = "Atualiza a ocupação do centro comunitario.")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Centro comunitário criado com sucesso"),
+        @ApiResponse(responseCode = "200", description = "Centro comunitário atualizado"),
         @ApiResponse(responseCode = "400", description = "Dados fornecidos são inválidos")
     })
     @PutMapping(value = "/{id}/atualizar-ocupacao")

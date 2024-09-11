@@ -1,5 +1,7 @@
 package dsl.jackson.igor.SGCC.model.dto;
 
+import java.util.List;
+
 public class CentroComunitarioDTO {
 
     private String id;
@@ -8,7 +10,7 @@ public class CentroComunitarioDTO {
     private String localizacao;
     private int capacidadeMaxima;
     private int pessoasOcupando;
-    private RecursosDTO recursos;
+    private List<CentroRecursoDTO> recursos;
 
     // Construtor padrão
     public CentroComunitarioDTO() {
@@ -16,7 +18,7 @@ public class CentroComunitarioDTO {
 
     // Construtor com parâmetros
     public CentroComunitarioDTO(String id, String nome, String endereco, String localizacao,
-                                int capacidadeMaxima, int pessoasOcupando, RecursosDTO recursos) {
+                                int capacidadeMaxima, int pessoasOcupando, List<CentroRecursoDTO> recursos) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -27,26 +29,61 @@ public class CentroComunitarioDTO {
     }
 
     // Getters e Setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public String getId() {
+        return id;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getEndereco() { return endereco; }
-    public void setEndereco(String endereco) { this.endereco = endereco; }
+    public String getNome() {
+        return nome;
+    }
 
-    public String getLocalizacao() { return localizacao; }
-    public void setLocalizacao(String localizacao) { this.localizacao = localizacao; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public int getCapacidadeMaxima() { return capacidadeMaxima; }
-    public void setCapacidadeMaxima(int capacidadeMaxima) { this.capacidadeMaxima = capacidadeMaxima; }
+    public String getEndereco() {
+        return endereco;
+    }
 
-    public int getPessoasOcupando() { return pessoasOcupando; }
-    public void setPessoasOcupando(int pessoasOcupando) { this.pessoasOcupando = pessoasOcupando; }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-    public RecursosDTO getRecursos() { return recursos; }
-    public void setRecursos(RecursosDTO recursos) { this.recursos = recursos; }
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public int getCapacidadeMaxima() {
+        return capacidadeMaxima;
+    }
+
+    public void setCapacidadeMaxima(int capacidadeMaxima) {
+        this.capacidadeMaxima = capacidadeMaxima;
+    }
+
+    public int getPessoasOcupando() {
+        return pessoasOcupando;
+    }
+
+    public void setPessoasOcupando(int pessoasOcupando) {
+        this.pessoasOcupando = pessoasOcupando;
+    }
+
+    public List<CentroRecursoDTO> getRecursos() {
+        return recursos;
+    }
+
+    public void setRecursos(List<CentroRecursoDTO> recursos) {
+        this.recursos = recursos;
+    }
 
     @Override
     public String toString() {
@@ -60,4 +97,5 @@ public class CentroComunitarioDTO {
                 ", recursos=" + recursos +
                 '}';
     }
+
 }

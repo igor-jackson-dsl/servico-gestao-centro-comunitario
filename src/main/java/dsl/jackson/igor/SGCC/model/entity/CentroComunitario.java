@@ -13,7 +13,6 @@ public class CentroComunitario {
     private String localizacao;
     private int capacidadeMaxima;
     private int pessoasOcupando;
-    private Recursos recursos;
 
     // Construtor padrão
     public CentroComunitario() {
@@ -21,14 +20,13 @@ public class CentroComunitario {
 
     // Construtor com parâmetros
     public CentroComunitario(String id, String nome, String endereco, String localizacao,
-                                   int capacidadeMaxima, int pessoasOcupando, Recursos recursos) {
+                                   int capacidadeMaxima, int pessoasOcupando) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
         this.localizacao = localizacao;
         this.capacidadeMaxima = capacidadeMaxima;
         this.pessoasOcupando = pessoasOcupando;
-        this.recursos = recursos;
     }
 
     // Getters e Setters
@@ -50,9 +48,6 @@ public class CentroComunitario {
     public int getPessoasOcupando() { return pessoasOcupando; }
     public void setPessoasOcupando(int pessoasOcupando) { this.pessoasOcupando = pessoasOcupando; }
 
-    public Recursos getRecursos() { return recursos; }
-    public void setResources(Recursos resources) { this.recursos = recursos; }
-
     @Override
     public String toString() {
         return "CentroComunitario{" +
@@ -62,7 +57,6 @@ public class CentroComunitario {
                 ", localizacao='" + localizacao + '\'' +
                 ", capacidadeMaxima=" + capacidadeMaxima +
                 ", pessoasOcupando=" + pessoasOcupando +
-                ", resources=" + recursos +
                 '}';
     }
 }

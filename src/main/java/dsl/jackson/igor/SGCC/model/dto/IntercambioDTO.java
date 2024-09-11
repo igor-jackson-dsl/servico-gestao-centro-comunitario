@@ -1,60 +1,88 @@
 package dsl.jackson.igor.SGCC.model.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class IntercambioDTO {
 
     private String id;
-    private String centroOrigemId;
-    private String centroDestinoId;
-    private RecursosDTO recursosOferecidos;
-    private RecursosDTO recursosRecebidos;
-    private LocalDateTime dataNegociacao;
+    private String idCentroOrigem;
+    private String idCentroDestino;
+    private List<CentroRecursoDTO> recursosOrigem;
+    private List<CentroRecursoDTO> recursosDestino;
+    private int pontosTotais;
+    private LocalDateTime dataHora;
 
     // Construtor padrão
-    public IntercambioDTO() {
-    }
+    public IntercambioDTO() {}
 
     // Construtor com parâmetros
-    public IntercambioDTO(String id, String centroOrigemId, String centroDestinoId,
-                          RecursosDTO recursosOferecidos, RecursosDTO recursosRecebidos,
-                          LocalDateTime dataNegociacao) {
+    public IntercambioDTO(String id, String idCentroOrigem, String idCentroDestino,
+                          List<CentroRecursoDTO> recursosOrigem, List<CentroRecursoDTO> recursosDestino,
+                          int pontosTotais, LocalDateTime dataHora) {
         this.id = id;
-        this.centroOrigemId = centroOrigemId;
-        this.centroDestinoId = centroDestinoId;
-        this.recursosOferecidos = recursosOferecidos;
-        this.recursosRecebidos = recursosRecebidos;
-        this.dataNegociacao = dataNegociacao;
+        this.idCentroOrigem = idCentroOrigem;
+        this.idCentroDestino = idCentroDestino;
+        this.recursosOrigem = recursosOrigem;
+        this.recursosDestino = recursosDestino;
+        this.pontosTotais = pontosTotais;
+        this.dataHora = dataHora;
     }
 
     // Getters e Setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public String getId() {
+        return id;
+    }
 
-    public String getCentroOrigemId() { return centroOrigemId; }
-    public void setCentroOrigemId(String centroOrigemId) { this.centroOrigemId = centroOrigemId; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getCentroDestinoId() { return centroDestinoId; }
-    public void setCentroDestinoId(String centroDestinoId) { this.centroDestinoId = centroDestinoId; }
+    public String getIdCentroOrigem() {
+        return idCentroOrigem;
+    }
 
-    public RecursosDTO getRecursosOferecidos() { return recursosOferecidos; }
-    public void setRecursosOferecidos(RecursosDTO recursosOferecidos) { this.recursosOferecidos = recursosOferecidos; }
+    public void setIdCentroOrigem(String idCentroOrigem) {
+        this.idCentroOrigem = idCentroOrigem;
+    }
 
-    public RecursosDTO getRecursosRecebidos() { return recursosRecebidos; }
-    public void setRecursosRecebidos(RecursosDTO recursosRecebidos) { this.recursosRecebidos = recursosRecebidos; }
+    public String getIdCentroDestino() {
+        return idCentroDestino;
+    }
 
-    public LocalDateTime getDataNegociacao() { return dataNegociacao; }
-    public void setDataNegociacao(LocalDateTime dataNegociacao) { this.dataNegociacao = dataNegociacao; }
+    public void setIdCentroDestino(String idCentroDestino) {
+        this.idCentroDestino = idCentroDestino;
+    }
 
-    @Override
-    public String toString() {
-        return "IntercambioDTO{" +
-                "id='" + id + '\'' +
-                ", centroOrigemId='" + centroOrigemId + '\'' +
-                ", centroDestinoId='" + centroDestinoId + '\'' +
-                ", recursosOferecidos=" + recursosOferecidos +
-                ", recursosRecebidos=" + recursosRecebidos +
-                ", dataNegociacao=" + dataNegociacao +
-                '}';
+    public List<CentroRecursoDTO> getRecursosOrigem() {
+        return recursosOrigem;
+    }
+
+    public void setRecursosOrigem(List<CentroRecursoDTO> recursosOrigem) {
+        this.recursosOrigem = recursosOrigem;
+    }
+
+    public List<CentroRecursoDTO> getRecursosDestino() {
+        return recursosDestino;
+    }
+
+    public void setRecursosDestino(List<CentroRecursoDTO> recursosDestino) {
+        this.recursosDestino = recursosDestino;
+    }
+
+    public int getPontosTotais() {
+        return pontosTotais;
+    }
+
+    public void setPontosTotais(int pontosTotais) {
+        this.pontosTotais = pontosTotais;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 }

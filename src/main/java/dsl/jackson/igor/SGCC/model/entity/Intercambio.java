@@ -1,61 +1,93 @@
 package dsl.jackson.igor.SGCC.model.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Document(collection = "intercambio")
 public class Intercambio {
+
+    @Id
     private String id;
-    private String centroOrigemId;
-    private String centroDestinoId;
-    private Recursos recursosOferecidos;
-    private Recursos recursosRecebidos;
-    private LocalDateTime dataNegociacao;
+    private String idCentroOrigem;
+    private String idCentroDestino;
+    private List<CentroRecursos> recursosOrigem;
+    private List<CentroRecursos> recursosDestino;
+    private int pontosTotais;
+    private LocalDateTime dataHora;
 
-    //Construtor padrão
-    public Intercambio(){}
+    // Construtor padrão
+    public Intercambio() {}
 
-    //Construtor com parametros
-    public Intercambio(String id, String centroOrigemId, String centroDestinoId,
-                      Recursos recursosOferecidos, Recursos recursosRecebidos,
-                      LocalDateTime dataNegociacao) {
-        this.id = id;
-        this.centroOrigemId = centroOrigemId;
-        this.centroDestinoId = centroDestinoId;
-        this.recursosOferecidos = recursosOferecidos;
-        this.recursosRecebidos = recursosRecebidos;
-        this.dataNegociacao = dataNegociacao;
+    // Construtor com parâmetros
+    public Intercambio(String idCentroOrigem, String idCentroDestino, List<CentroRecursos> recursosOrigem,
+                       List<CentroRecursos> recursosDestino, int pontosTotais, LocalDateTime dataHora) {
+        this.idCentroOrigem = idCentroOrigem;
+        this.idCentroDestino = idCentroDestino;
+        this.recursosOrigem = recursosOrigem;
+        this.recursosDestino = recursosDestino;
+        this.pontosTotais = pontosTotais;
+        this.dataHora = dataHora;
     }
 
     // Getters e Setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
-
-    public String getCentroOrigemId() { return centroOrigemId; }
-    public void setCentroOrigemId(String centroOrigemId) { this.centroOrigemId = centroOrigemId; }
-
-    public String getCentroDestinoId() { return centroDestinoId; }
-    public void setCentroDestinoId(String centroDestinoId) { this.centroDestinoId = centroDestinoId; }
-
-    public Recursos getRecursosOferecidos() { return recursosOferecidos; }
-    public void setRecursosOferecidos(Recursos recursosOferecidos) { this.recursosOferecidos = recursosOferecidos; }
-
-    public Recursos getRecursosRecebidos() { return recursosRecebidos; }
-    public void setRecursosRecebidos(Recursos recursosRecebidos) { this.recursosRecebidos = recursosRecebidos; }
-
-    public LocalDateTime getDataNegociacao() { return dataNegociacao; }
-    public void setDataNegociacao(LocalDateTime dataNegociacao) { this.dataNegociacao = dataNegociacao; }
-
-    @Override
-    public String toString() {
-        return "Negociacao{" +
-                "id='" + id + '\'' +
-                ", centroOrigemId='" + centroOrigemId + '\'' +
-                ", centroDestinoId='" + centroDestinoId + '\'' +
-                ", recursosOferecidos=" + recursosOferecidos +
-                ", recursosRecebidos=" + recursosRecebidos +
-                ", dataNegociacao=" + dataNegociacao +
-                '}';
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getIdCentroOrigem() {
+        return idCentroOrigem;
+    }
+
+    public void setIdCentroOrigem(String idCentroOrigem) {
+        this.idCentroOrigem = idCentroOrigem;
+    }
+
+    public String getIdCentroDestino() {
+        return idCentroDestino;
+    }
+
+    public void setIdCentroDestino(String idCentroDestino) {
+        this.idCentroDestino = idCentroDestino;
+    }
+
+    public List<CentroRecursos> getRecursosOrigem() {
+        return recursosOrigem;
+    }
+
+    public void setRecursosOrigem(List<CentroRecursos> recursosOrigem) {
+        this.recursosOrigem = recursosOrigem;
+    }
+
+    public List<CentroRecursos> getRecursosDestino() {
+        return recursosDestino;
+    }
+
+    public void setRecursosDestino(List<CentroRecursos> recursosDestino) {
+        this.recursosDestino = recursosDestino;
+    }
+
+    public int getPontosTotais() {
+        return pontosTotais;
+    }
+
+    public void setPontosTotais(int pontosTotais) {
+        this.pontosTotais = pontosTotais;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
+    }
+
+
 }

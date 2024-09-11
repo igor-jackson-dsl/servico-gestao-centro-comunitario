@@ -1,52 +1,63 @@
 package dsl.jackson.igor.SGCC.model.entity;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "recursos")
 public class Recursos {
 
-    private int medicos;
-    private int voluntarios;
-    private int kitsSuprimentos;
-    private int veiculos;
-    private int cestasBasicas;
+    @Id
+    private String id;
+    private int codRecurso;
+    private String nome;
+    private int pontos;
 
     //Construtor padrão
-    public Recursos() {}
+    public Recursos(){}
 
     //Construtor com parâmetros
-    public Recursos(int medicos, int voluntarios, int kitsSuprimentos, int veiculos, int cestasBasicas) {
-        this.medicos = medicos;
-        this.voluntarios = voluntarios;
-        this.kitsSuprimentos = kitsSuprimentos;
-        this.veiculos = veiculos;
-        this.cestasBasicas = cestasBasicas;
+    public Recursos(String id,int codRecurso, String nome, int pontos) {
+        this.id = id;
+        this.codRecurso = codRecurso;
+        this.nome = nome;
+        this.pontos = pontos;
     }
 
-    // Getters e Setters
-    public int getMedicos() { return medicos; }
-    public void setMedicos(int medicos) { this.medicos = medicos; }
+    public String getId() {
+        return id;
+    }
 
-    public int getVoluntarios() { return voluntarios; }
-    public void setVoluntarios(int voluntarios) { this.voluntarios = voluntarios; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public int getKitsSuprimentos() { return kitsSuprimentos; }
-    public void setKitsSuprimentos(int kitsSuprimentos) { this.kitsSuprimentos = kitsSuprimentos; }
+    public int getCodRecurso() {
+        return codRecurso;
+    }
 
-    public int getVeiculos() { return veiculos; }
-    public void setVeiculos(int veiculos) { this.veiculos = veiculos; }
+    public void setCodRecurso(int codRecurso) {
+        this.codRecurso = codRecurso;
+    }
 
-    public int getCestasBasicas() { return cestasBasicas; }
-    public void setCestasBasicas(int cestasBasicas) { this.cestasBasicas = cestasBasicas; }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
 
     @Override
     public String toString() {
-        return "Recursos{" +
-                "medicos=" + medicos +
-                ", voluntarios=" + voluntarios +
-                ", kitsSuprimentos=" + kitsSuprimentos +
-                ", veiculos=" + veiculos +
-                ", cestasBasicas=" + cestasBasicas +
-                '}';
+        return super.toString();
     }
 }

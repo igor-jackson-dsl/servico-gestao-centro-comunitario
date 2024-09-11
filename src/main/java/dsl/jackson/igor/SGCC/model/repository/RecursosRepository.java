@@ -5,4 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface RecursosRepository extends MongoRepository<Recursos, String> {
 
+
+    Recursos findByCodRecurso (int codRecurso);
 }
