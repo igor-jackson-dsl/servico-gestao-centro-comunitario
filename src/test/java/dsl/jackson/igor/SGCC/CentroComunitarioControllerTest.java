@@ -2,6 +2,7 @@ package dsl.jackson.igor.SGCC;
 
 import dsl.jackson.igor.SGCC.controller.CentroComunitarioController;
 import dsl.jackson.igor.SGCC.model.dto.CentroComunitarioDTO;
+import dsl.jackson.igor.SGCC.model.dto.CentroComunitarioDTORequest;
 import dsl.jackson.igor.SGCC.model.entity.CentroComunitario;
 import dsl.jackson.igor.SGCC.model.service.CentroComunitarioService;
 import org.junit.jupiter.api.BeforeEach;
@@ -62,7 +63,7 @@ public class CentroComunitarioControllerTest {
         centro.setEndereco("");
         centro.setPessoasOcupando(10);
 
-        when(centroComunitarioService.criarCentroComunitario(any(CentroComunitarioDTO.class))).thenReturn(centro);
+        when(centroComunitarioService.criarCentroComunitario(any(CentroComunitarioDTORequest.class))).thenReturn(centro);
 
         mockMvc.perform(post("/api/centros")
                 .contentType(MediaType.APPLICATION_JSON)

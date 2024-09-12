@@ -33,28 +33,16 @@ Este projeto é um sistema de gerenciamento de centros comunitários, desenvolvi
 
 ## Configuração
 
-### 1. Configurar MongoDB e RabbitMQ com Docker Compose
+### 1. Executar a Aplicação
 
-Você pode iniciar os serviços de banco de dados e mensagens com Docker Compose. Certifique-se de ter o Docker instalado e execute o seguinte comando no diretório raiz do projeto:
+Você pode iniciar a aplicação junto dos serviços de banco de dados e mensagens com Docker Compose. Certifique-se de ter o Docker instalado e execute o seguinte comando no diretório raiz do projeto:
 
 ```bash
 docker-compose up -d
 ```
 
-Este comando inicializará os contêineres do MongoDB e RabbitMQ.
+Este comando inicializará os contêineres da aplicação, MongoDB e RabbitMQ.
 
-### 2. Inicialização de Coleções e Dados no MongoDB
-
-Quando a aplicação for iniciada, ela verificará se a coleção de recursos já existe no MongoDB. Se não existir, será criada uma coleção com documentos iniciais. Essa lógica está definida no arquivo `MongoDBInitializer.java`.
-
-
-### 3. Executar a Aplicação
-
-Com o MongoDB e RabbitMQ configurados, você pode executar a aplicação localmente:
-
-```bash
-mvn spring-boot:run
-```
 
 A aplicação estará disponível em: `http://localhost:8080`
 
