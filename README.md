@@ -36,7 +36,12 @@ Este projeto é um sistema de gerenciamento de centros comunitários, desenvolvi
 ### 1. Executar a Aplicação
 
 Você pode iniciar a aplicação junto dos serviços de banco de dados e mensagens com Docker Compose. Certifique-se de ter o Docker instalado e execute o seguinte comando no diretório raiz do projeto:
-
+```bash
+mvn install
+```
+```bash
+mvn clean package
+```
 ```bash
 docker-compose up -d
 ```
