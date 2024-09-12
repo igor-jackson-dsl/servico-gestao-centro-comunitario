@@ -30,6 +30,7 @@ public class MongoDBInitializer implements CommandLineRunner {
         MongoCollection<org.bson.Document> collection = database.getCollection(collectionName);
 
         // Crie e insire os documentos dos recursos padroes na base
+        //observar os codRecursos para utilizar o codigo correto ao realizar o intercambio
         org.bson.Document doc1 = new org.bson.Document("codRecurso", 10).append("nome", "Médico").append("pontos",4);
         org.bson.Document doc2 = new org.bson.Document("codRecurso", 20).append("nome", "Voluntário").append("pontos",3);
         org.bson.Document doc3 = new org.bson.Document("codRecurso", 30).append("nome", "Kit de suprimentos médicos").append("pontos",7);
