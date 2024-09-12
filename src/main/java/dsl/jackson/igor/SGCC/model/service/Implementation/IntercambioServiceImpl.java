@@ -48,8 +48,8 @@ public class IntercambioServiceImpl implements IntercambioService {
         int pontosDestino = 0;
         double ocupacaoOrigem = (double) centroOrigem.getPessoasOcupando() / centroOrigem.getCapacidadeMaxima();
 
-        calculaPontos(pontosOrigem,recursosCentroOrigem);
-        calculaPontos(pontosDestino,recursosCentroDestino);
+        pontosOrigem = calculaPontos(pontosOrigem,recursosCentroOrigem);
+        pontosDestino = calculaPontos(pontosDestino,recursosCentroDestino);
         verificaQuantSuficientes(recursosCentroOrigem,centroOrigem);
         verificaQuantSuficientes(recursosCentroDestino,centroDestino);
 
@@ -69,7 +69,7 @@ public class IntercambioServiceImpl implements IntercambioService {
                 idCentroDestino,
                 centroRecursosOrigemList,
                 centroRecursosDestinoList,
-                pontosOrigem,
+                pontosOrigem,//origem ou destinos são iguais
                 LocalDateTime.now()
         );
         intercambioRepository.save(intercambio);
@@ -87,30 +87,42 @@ public class IntercambioServiceImpl implements IntercambioService {
 
             Recursos recurso = recursosRepository.findByCodRecurso(centroRecursoDTO.getCodRecurso());
 
-            CentroRecursos CentroRecursoA = centroRecursosRepository.findByIdRecursoCentro(centroA.getId(),recurso.getId());
-            CentroRecursoA.setQuantidadeRecurso(CentroRecursoA.getQuantidadeRecurso() - centroRecursoDTO.getQuantidadeRecurso());
+            CentroRecursos centroRecursoA = centroRecursosRepository.findByIdRecursoCentro(centroA.getId(),recurso.getId());
+            centroRecursoA.setQuantidadeRecurso(centroRecursoA.getQuantidadeRecurso() - centroRecursoDTO.getQuantidadeRecurso());
 
-            CentroRecursos CentroRecursoB = centroRecursosRepository.findByIdRecursoCentro(centroB.getId(),recurso.getId());
-            CentroRecursoB.setQuantidadeRecurso(CentroRecursoB.getQuantidadeRecurso() + centroRecursoDTO.getQuantidadeRecurso());
+            CentroRecursos centroRecursoB = centroRecursosRepository.findByIdRecursoCentro(centroB.getId(),recurso.getId());
+            centroRecursoB.setQuantidadeRecurso(centroRecursoB.getQuantidadeRecurso() + centroRecursoDTO.getQuantidadeRecurso());
 
-            centroRecursosRepository.save(CentroRecursoA);
-            centroRecursosRepository.save(CentroRecursoB);
+            centroRecursosRepository.save(centroRecursoA);
+            centroRecursosRepository.save(centroRecursoB);
 
-            centroRecursosOrigemList.add(CentroRecursoA);
+            CentroRecursos centroRecursoInter = new CentroRecursos();
+            centroRecursoInter.setId(centroRecursoA.getId());
+            centroRecursoInter.setIdCentro(centroRecursoA.getIdCentro());
+            centroRecursoInter.setIdRecurso(centroRecursoA.getIdRecurso());
+            centroRecursoInter.setQuantidadeRecurso(centroRecursoDTO.getQuantidadeRecurso());
+
+            centroRecursosOrigemList.add(centroRecursoInter);
         }
         for (CentroRecursoDTO centroRecursoDTO : recursosCentroBList){
             Recursos recurso = recursosRepository.findByCodRecurso(centroRecursoDTO.getCodRecurso());
 
-            CentroRecursos CentroRecursoB = centroRecursosRepository.findByIdRecursoCentro(centroB.getId(),recurso.getId());
-            CentroRecursoB.setQuantidadeRecurso(CentroRecursoB.getQuantidadeRecurso() - centroRecursoDTO.getQuantidadeRecurso());
+            CentroRecursos centroRecursoB = centroRecursosRepository.findByIdRecursoCentro(centroB.getId(),recurso.getId());
+            centroRecursoB.setQuantidadeRecurso(centroRecursoB.getQuantidadeRecurso() - centroRecursoDTO.getQuantidadeRecurso());
 
-            CentroRecursos CentroRecursoA = centroRecursosRepository.findByIdRecursoCentro(centroA.getId(),recurso.getId());
-            CentroRecursoA.setQuantidadeRecurso(CentroRecursoA.getQuantidadeRecurso() + centroRecursoDTO.getQuantidadeRecurso());
+            CentroRecursos centroRecursoA = centroRecursosRepository.findByIdRecursoCentro(centroA.getId(),recurso.getId());
+            centroRecursoA.setQuantidadeRecurso(centroRecursoA.getQuantidadeRecurso() + centroRecursoDTO.getQuantidadeRecurso());
 
-            centroRecursosRepository.save(CentroRecursoB);
-            centroRecursosRepository.save(CentroRecursoA);
+            centroRecursosRepository.save(centroRecursoB);
+            centroRecursosRepository.save(centroRecursoA);
 
-            centroRecursosDestinoList.add(CentroRecursoB);
+            CentroRecursos centroRecursoInter = new CentroRecursos();
+            centroRecursoInter.setId(centroRecursoB.getId());
+            centroRecursoInter.setIdCentro(centroRecursoB.getIdCentro());
+            centroRecursoInter.setIdRecurso(centroRecursoB.getIdRecurso());
+            centroRecursoInter.setQuantidadeRecurso(centroRecursoDTO.getQuantidadeRecurso());
+
+            centroRecursosDestinoList.add(centroRecursoInter);
         }
     }
 
@@ -125,11 +137,12 @@ public class IntercambioServiceImpl implements IntercambioService {
         }
     }
 
-    private void calculaPontos(int pontos, List<CentroRecursoDTO>recursosCentro){
+    private int calculaPontos(int pontos, List<CentroRecursoDTO>recursosCentro){
         for (CentroRecursoDTO centroRecursoDTO : recursosCentro){
             Recursos recurso = recursosRepository.findByCodRecurso(centroRecursoDTO.getCodRecurso());
             pontos = pontos + recurso.getPontos();
         }
+        return pontos;
     }
 
     private boolean verificaPontoOcupacao(int pontosOrigem, int pontosDestino, double ocupacaoOrigem){
