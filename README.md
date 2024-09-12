@@ -27,7 +27,7 @@ Este projeto é um sistema de gerenciamento de centros comunitários, desenvolvi
 ## Pré-requisitos
 
 - **Java 11+**
-- **Maven**
+- **Maven 3.9.9**
 - **Docker** e **Docker Compose**
 - **MongoDB** (ou pode usar a versão incorporada nos testes)
 
