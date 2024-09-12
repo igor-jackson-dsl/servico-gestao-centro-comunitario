@@ -1,6 +1,7 @@
 package dsl.jackson.igor.SGCC.model.service.Implementation;
 
 import dsl.jackson.igor.SGCC.model.dto.CentroComunitarioDTO;
+import dsl.jackson.igor.SGCC.model.dto.CentroComunitarioDTORequest;
 import dsl.jackson.igor.SGCC.model.dto.CentroRecursoDTO;
 import dsl.jackson.igor.SGCC.model.entity.CentroComunitario;
 import dsl.jackson.igor.SGCC.model.entity.CentroRecursos;
@@ -33,7 +34,7 @@ public class CentroComunitarioServiceImpl implements CentroComunitarioService {
     }
 
     @Override
-    public CentroComunitario criarCentroComunitario(CentroComunitarioDTO centroDTO) {
+    public CentroComunitario criarCentroComunitario(CentroComunitarioDTORequest centroDTO) {
 
         CentroComunitario centroComunitario = new CentroComunitario(
                 null, // id gerado automaticamente pelo MongoDB

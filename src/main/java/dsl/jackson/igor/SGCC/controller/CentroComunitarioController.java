@@ -1,6 +1,7 @@
 package dsl.jackson.igor.SGCC.controller;
 
 import dsl.jackson.igor.SGCC.model.dto.CentroComunitarioDTO;
+import dsl.jackson.igor.SGCC.model.dto.CentroComunitarioDTORequest;
 import dsl.jackson.igor.SGCC.model.entity.CentroComunitario;
 import dsl.jackson.igor.SGCC.model.service.CentroComunitarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,7 +22,7 @@ public class CentroComunitarioController {
 
     CentroComunitarioService centroComunitarioService;
 
-    CentroComunitarioController (CentroComunitarioService service){
+    public CentroComunitarioController(CentroComunitarioService service){
         this.centroComunitarioService = service;
     }
 
@@ -42,7 +43,7 @@ public class CentroComunitarioController {
         @ApiResponse(responseCode = "400", description = "Dados fornecidos são inválidos")
     })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CentroComunitario> adicionarCentroComunitario(@RequestBody CentroComunitarioDTO centroDTO) {
+    public ResponseEntity<CentroComunitario> adicionarCentroComunitario(@RequestBody CentroComunitarioDTORequest centroDTO) {
         CentroComunitario centroComunitario = centroComunitarioService.criarCentroComunitario(centroDTO);
         return new ResponseEntity<>(centroComunitario, HttpStatus.CREATED);
     }
@@ -56,9 +57,9 @@ public class CentroComunitarioController {
     public ResponseEntity<String> atualizarOcupacao(@PathVariable String id, @RequestParam int novaOcupacao) {
         boolean notificacaoGerada = centroComunitarioService.atualizarOcupacao(id, novaOcupacao);
         if (notificacaoGerada) {
-            return ResponseEntity.ok("Ocupação atualizada e notificação gerada.");
+            return ResponseEntity.ok("Ocupacao atualizada e notificacao gerada.");
         } else {
-            return ResponseEntity.ok("Ocupação atualizada.");
+            return ResponseEntity.ok("Ocupacao atualizada.");
         }
     }
 

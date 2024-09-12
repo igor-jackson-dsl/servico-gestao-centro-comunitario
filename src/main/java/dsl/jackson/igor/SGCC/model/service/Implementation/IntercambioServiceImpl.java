@@ -126,7 +126,7 @@ public class IntercambioServiceImpl implements IntercambioService {
         }
     }
 
-    private void verificaQuantSuficientes(List<CentroRecursoDTO>recursosCentro, CentroComunitario centro){
+    public void verificaQuantSuficientes(List<CentroRecursoDTO> recursosCentro, CentroComunitario centro){
         for (CentroRecursoDTO centroRecursoDTO : recursosCentro){
             Recursos recurso = recursosRepository.findByCodRecurso(centroRecursoDTO.getCodRecurso());
                 // Verifica se a quantidade é suficiente para a troca
@@ -145,7 +145,7 @@ public class IntercambioServiceImpl implements IntercambioService {
         return pontos;
     }
 
-    private boolean verificaPontoOcupacao(int pontosOrigem, int pontosDestino, double ocupacaoOrigem){
+    public boolean verificaPontoOcupacao(int pontosOrigem, int pontosDestino, double ocupacaoOrigem){
         if (pontosOrigem != pontosDestino){
             // Verifica se a ocupação é maior que 90% para o centro origem
             return ocupacaoOrigem > 0.90;

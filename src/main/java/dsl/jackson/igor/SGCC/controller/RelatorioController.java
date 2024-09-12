@@ -1,6 +1,9 @@
 package dsl.jackson.igor.SGCC.controller;
 
 import dsl.jackson.igor.SGCC.model.service.RelatorioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,7 +29,11 @@ public class RelatorioController {
         this.relatorioService = relatorioService;
     }
 
-    @GetMapping(value = "/ocupacao-maior-90", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @Operation(summary = "Relatorio de Ocupação", description = "Lista todos os centros comunitarios com ocupação maior que 90%.")
+    @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Relatorio gerado com sucesso"),
+    @ApiResponse(responseCode = "400", description = "Dados fornecidos são inválidos")})
+    @GetMapping(value = "/relatorio-ocupacao", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> gerarRelatorioCentrosComOcupacaoMaiorQue90() {
 
 
@@ -35,7 +42,7 @@ public class RelatorioController {
 
            HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
-            headers.setContentDispositionFormData("attachment", "relatorio.pdf");
+            headers.setContentDispositionFormData("attachment", "relatorio_ocupacao.pdf");
             headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
             // Retorna o PDF como ResponseEntity
@@ -43,7 +50,11 @@ public class RelatorioController {
 
     }
 
-    @GetMapping(value = "/relatorioRecursos", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @Operation(summary = "Relatorio de Recursos", description = "Lista os recursos utilizados pelos centros e mostra a media de utilização")
+    @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Relatorio gerado com sucesso"),
+    @ApiResponse(responseCode = "400", description = "Dados fornecidos são inválidos")})
+    @GetMapping(value = "/relatorio-recursos", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> gerarRelatorioDeRecursos() {
 
 
@@ -59,8 +70,11 @@ public class RelatorioController {
             return new ResponseEntity<>(relatorio, headers, HttpStatus.OK);
 
     }
-
-    @GetMapping(value = "/relatorioIntercambio", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @Operation(summary = "Relatorio de Intercambio", description = "Lista os intercambios realizados, filtra por data(opcional)")
+    @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Relatorio gerado com sucesso"),
+    @ApiResponse(responseCode = "400", description = "Dados fornecidos são inválidos")})
+    @GetMapping(value = "/relatorio-intercambio", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> gerarRelatorioIntercambio(@RequestParam(required = false) String dataHoraInicio) {
 
 
@@ -69,7 +83,7 @@ public class RelatorioController {
 
            HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
-            headers.setContentDispositionFormData("attachment", "relatorio_recursos.pdf");
+            headers.setContentDispositionFormData("attachment", "relatorio_intercambio.pdf");
             headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
             // Retorna o PDF como ResponseEntity

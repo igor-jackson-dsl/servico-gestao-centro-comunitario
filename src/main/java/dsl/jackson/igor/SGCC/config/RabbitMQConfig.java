@@ -24,24 +24,4 @@ public class RabbitMQConfig {
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         return new RabbitTemplate(connectionFactory);
     }
-
-//    @Bean
-//    public SimpleMessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory,
-//                                                                   MessageListenerAdapter messageListenerAdapter) {
-//        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-//        container.setConnectionFactory(connectionFactory);
-//        container.setQueueNames("notificationFullQueue");
-//        container.setMessageListener(messageListenerAdapter);
-//        return container;
-//    }
-//
-//    @Bean
-//    public MessageListenerAdapter messageListenerAdapter() {
-//        return new MessageListenerAdapter(new MessageListener() {
-//            @Override
-//            public void onMessage(Message message) {
-//                System.out.println("Received <" + new String(message.getBody()) + ">");
-//            }
-//        });
-//    }
 }

@@ -2,8 +2,12 @@ package dsl.jackson.igor.SGCC.controller;
 
 import dsl.jackson.igor.SGCC.model.dto.CentroRecursoDTO;
 import dsl.jackson.igor.SGCC.model.dto.IntercambioDTO;
+import dsl.jackson.igor.SGCC.model.dto.IntercambioDTORequest;
 import dsl.jackson.igor.SGCC.model.entity.Intercambio;
 import dsl.jackson.igor.SGCC.model.service.IntercambioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +26,13 @@ public class IntercambioController {
     }
 
     // Endpoint para realizar um intercâmbio
+    @Operation(summary = "Realiza um intercambio", description = "Insira os centros e a lista de recursos para realizar o intercambio.")
+    @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Intercâmbio realizado com sucesso"),
+    @ApiResponse(responseCode = "400", description = "Dados fornecidos são inválidos")})
     @PostMapping(value = "/realizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> realizarIntercambio(
-        @RequestBody IntercambioDTO intercambioDTO) {
+        @RequestBody IntercambioDTORequest intercambioDTO) {
 
         String idCentroOrigem = intercambioDTO.getIdCentroOrigem();
         String idCentroDestino = intercambioDTO.getIdCentroDestino();
@@ -41,6 +49,10 @@ public class IntercambioController {
     }
 
     // Endpoint para listar todos os intercâmbios
+    @Operation(summary = "Lista os intercambios", description = "Lista os intercambios.")
+    @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Intercambios listados"),
+    @ApiResponse(responseCode = "400", description = "Dados fornecidos são inválidos")})
     @GetMapping(value = "listar")
     public ResponseEntity<List<Intercambio>> listarIntercambios() {
         List<Intercambio> intercambios = intercambioService.listarIntercambios();
