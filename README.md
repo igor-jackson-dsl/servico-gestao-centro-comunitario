@@ -40,16 +40,15 @@ Você pode iniciar a aplicação junto dos serviços de banco de dados e mensage
 mvn install
 ```
 ```bash
-mvn clean package
-```
-```bash
 docker-compose up -d
 ```
 
 Este comando inicializará os contêineres da aplicação, MongoDB e RabbitMQ.
 
 
-A aplicação estará disponível em: `http://localhost:8080`
+A aplicação estará disponível em: `http://localhost:8080`.
+
+
 
 ## Documentação da API
 
